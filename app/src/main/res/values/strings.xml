@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Musical Structure App</string>
+    <string name="title_screen">Browse Songs</string>
+    <string name="artist">Artist Name</string>
+    <string name="album">Album Name</string>
+    <string name="song_title">Song Title Here</string>
+    <string name="browse">Browse</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="queue">Queue</string>
 </resources>

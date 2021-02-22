@@ -27,41 +27,22 @@ public class SongAdapter extends ArrayAdapter<Song> {
         View gridLayoutView = convertView;
         if (gridLayoutView == null) {
             gridLayoutView = LayoutInflater.from(getContext()).inflate(R.layout.image_grid_view, parent, false);
-
-            gridLayoutView.
-
-            Song currentSong = getItem(position);
-
-            ImageView albumCover = gridLayoutView.findViewById(R.id.album_cover);
-            albumCover.setImageResource(currentSong.getAlbumCoverResourceID());
-
-            TextView songTitle = gridLayoutView.findViewById(R.id.song_title);
-            songTitle.setText(currentSong.getTitle());
-
-            TextView artistName = gridLayoutView.findViewById(R.id.song_artist);
-            artistName.setText(currentSong.getArtist());
-
-            TextView albumName = gridLayoutView.findViewById(R.id.album_name);
-            albumName.setText(currentSong.getAlbum());
-
-        } else {
-
-            Song currentSong = getItem(position);
-
-            ImageView albumCover = gridLayoutView.findViewById(R.id.album_cover);
-            albumCover.setImageResource(currentSong.getAlbumCoverResourceID());
-
-            TextView songTitle = gridLayoutView.findViewById(R.id.song_title);
-            songTitle.setText(currentSong.getTitle());
-
-            TextView artistName = gridLayoutView.findViewById(R.id.song_artist);
-            artistName.setText(currentSong.getArtist());
-
-            TextView albumName = gridLayoutView.findViewById(R.id.album_name);
-            albumName.setText(currentSong.getAlbum());
         }
 
-        return gridLayoutView;
+        Song currentSong = getItem(position);
 
+        ImageView albumCover = gridLayoutView.findViewById(R.id.album_cover);
+        albumCover.setImageResource(currentSong.getAlbumCoverResourceID());
+
+        TextView songTitle = gridLayoutView.findViewById(R.id.song_title);
+        songTitle.setText(currentSong.getTitle());
+
+        TextView artistName = gridLayoutView.findViewById(R.id.song_artist);
+        artistName.setText(currentSong.getArtist());
+
+        TextView albumName = gridLayoutView.findViewById(R.id.album_name);
+        albumName.setText(currentSong.getAlbum());
+
+        return gridLayoutView;
     }
 }

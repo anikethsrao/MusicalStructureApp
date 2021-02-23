@@ -11,6 +11,7 @@
         <item>Album</item>
         <item>Artist</item>
         <item>Title</item>
+        <item>Shuffle</item>
     </string-array>
 
 </resources>

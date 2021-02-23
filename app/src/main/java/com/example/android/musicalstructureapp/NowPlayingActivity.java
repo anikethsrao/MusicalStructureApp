@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class NowPlayingActivity extends AppCompatActivity {
+
+    private boolean play = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,18 @@ public class NowPlayingActivity extends AppCompatActivity {
         TextView albumName = findViewById(R.id.album_name);
         albumName.setText(list.get(currentSong).getAlbum());
 
+        ImageView playImageView = findViewById(R.id.play_pause);
+        playImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(play){
+                    playImageView.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                } else{
+                    playImageView.setImageResource(R.drawable.pause_black_24dp);
+                }
+            }
+        });
+
         ImageView queueImageView = findViewById(R.id.queue_button);
         queueImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,10 +70,9 @@ public class NowPlayingActivity extends AppCompatActivity {
                     songs.sort(songs.getSortedBy());
                 } else {
                     shuffleImageView.setImageResource(R.drawable.shuffle_on_24px);
-                    songs.shuffleSongs();
+                    songs.sort(3);
                 }
             }
         });
-
     }
 }

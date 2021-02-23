@@ -16,9 +16,7 @@ public class Queue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.song_queue);
-
         refreshList();
-
     }
 
     private void refreshList() {
@@ -26,6 +24,7 @@ public class Queue extends AppCompatActivity {
         SongsObject songs = new SongsObject();
         SongAdapter songsAdapter = new SongAdapter(this, songs.list);
         ListView queueListView = findViewById(R.id.queue_list_view);
+        queueListView.setAdapter(null);
         queueListView.setAdapter(songsAdapter);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.android.musicalstructureapp;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -10,16 +11,23 @@ import java.util.Comparator;
 
 public class SongsObject {
 
+    private static boolean notInitialized = true;
     static ArrayList<Song> list = new ArrayList<>();
     static int position;
     static boolean shuffle = false;
 
-    private String[] sortTypes = { "Album", "Artist", "Title"};
-    private String sortedBy = "";
+    //0 -> Album
+    //1 -> Artist
+    //2 -> Title
+    //3 -> Shuffle
+    static int sortedBy = 2;
 
-    public SongsObject() {
-        addSongs();
-        sort("Title");
+    public SongsObject(){
+        if (notInitialized){
+            notInitialized = false;
+            addSongs();
+            sort(2);
+        }
     }
 
     private void addSongs() {
@@ -41,26 +49,25 @@ public class SongsObject {
         list.add(new Song("Baby Sitter (feat. Offset)", "DaBaby", "Baby on Baby", R.drawable.baby_on_baby_da_baby));
     }
 
-    public void sort(String type) {
+    public void sort(int type) {
         shuffle = false;
-        if(type.equals(sortTypes[0])) {
+        if(type == 0) {
             //TODO:Sort by Album
-        } else if (type.equals(sortTypes[1])){
+        } else if (type == 1){
             //TODO: Sort by Artist
-        }
-        else if (type.equals(sortTypes[2])){
-            sortedBy = sortTypes[2];
+        } else if (type == 2){
+            sortedBy = 2;
             Collections.sort(list, new Comparator<Song>() {
                 public int compare(Song s1, Song s2) {
                     return s1.getTitle().compareTo(s2.getTitle());
                 }
             });
+        }else if (type == 3){
+            Log.i("SongsObject", "Shuffled Songs List");
+            Collections.shuffle(list);
+            shuffle = true;
         }
-    }
 
-    public void shuffleSongs() {
-        Collections.shuffle(list);
-        shuffle = true;
     }
 
     public static void setPosition(int position) {
@@ -79,7 +86,7 @@ public class SongsObject {
         return list;
     }
 
-    public String getSortedBy() {
+    public int getSortedBy() {
         return sortedBy;
     }
 }

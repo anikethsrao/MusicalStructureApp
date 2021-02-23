@@ -1,7 +1,12 @@
 package com.example.android.musicalstructureapp;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class SongsObject {
 
@@ -9,6 +14,11 @@ public class SongsObject {
     static int position;
 
     public SongsObject() {
+        addSongs();
+        sortByTitle();
+    }
+
+    private void addSongs() {
         list.add(new Song("Senorita (feat. Shawn Mendes)", "Camila Cabello", "Romance", R.drawable.romance_camila_cabello));
         list.add(new Song("Do I Wanna Know", "Arctic Monkeys", "AM", R.drawable.am_arctic_monkeys));
         list.add(new Song("SICKO MODE", "Travis Scott", "ASTROWORLD", R.drawable.astroworld_travis_scott));
@@ -39,16 +49,25 @@ public class SongsObject {
         return list;
     }
 
-    private void sortByName(){
-        //TODO: add function to sort songs in alphabetical order by name
+/*    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void sortByArtist() {
+        Collections.sort(list, Comparator.comparing(Song::getArtist));
     }
 
-    public void shuffleSongs(){
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void sortByAlbum() {
+        Collections.sort(list, Comparator.comparing(Song::getAlbum));
+    }*/
+
+    private void sortByTitle() {
+        Collections.sort(list, new Comparator<Song>() {
+            public int compare(Song s1, Song s2) {
+                return s1.getTitle().compareTo(s2.getTitle());
+            }
+        });
+    }
+
+    public void shuffleSongs() {
         Collections.shuffle(list);
     }
-
-    public void unShuffleSongs(){
-        //TODO: call sort by name function to unsort the queue
-    }
-
 }

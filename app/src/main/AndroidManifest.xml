@@ -12,7 +12,11 @@
 
         <activity
             android:name=".NowPlayingActivity"
-            android:label="NowPlaying" />
+            android:label="Now Playing" />
+
+        <activity
+            android:name=".Queue"
+            android:label="@string/queue" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

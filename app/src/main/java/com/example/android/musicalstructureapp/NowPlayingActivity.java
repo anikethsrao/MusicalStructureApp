@@ -1,6 +1,10 @@
 package com.example.android.musicalstructureapp;
 
+import android.content.ContentProviderClient;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +36,29 @@ public class NowPlayingActivity extends AppCompatActivity {
 
         TextView albumName = findViewById(R.id.album_name);
         albumName.setText(list.get(currentSong).getAlbum());
+
+        ImageView queueImageView = findViewById(R.id.queue_button);
+        queueImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NowPlayingActivity.this, Queue.class);
+                startActivity(i);
+            }
+        });
+
+        ImageView shuffleImageView = findViewById(R.id.shuffle);
+        shuffleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (songs.getShuffle()) {
+                    shuffleImageView.setImageResource(R.drawable.ic_shuffle_24px);
+                    songs.sort(songs.getSortedBy());
+                } else {
+                    shuffleImageView.setImageResource(R.drawable.shuffle_on_24px);
+                    songs.shuffleSongs();
+                }
+            }
+        });
 
     }
 }

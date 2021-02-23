@@ -12,10 +12,14 @@ public class SongsObject {
 
     static ArrayList<Song> list = new ArrayList<>();
     static int position;
+    static boolean shuffle = false;
+
+    private String[] sortTypes = { "Album", "Artist", "Title"};
+    private String sortedBy = "";
 
     public SongsObject() {
         addSongs();
-        sortByTitle();
+        sort("Title");
     }
 
     private void addSongs() {
@@ -37,8 +41,34 @@ public class SongsObject {
         list.add(new Song("Baby Sitter (feat. Offset)", "DaBaby", "Baby on Baby", R.drawable.baby_on_baby_da_baby));
     }
 
+    public void sort(String type) {
+        shuffle = false;
+        if(type.equals(sortTypes[0])) {
+            //TODO:Sort by Album
+        } else if (type.equals(sortTypes[1])){
+            //TODO: Sort by Artist
+        }
+        else if (type.equals(sortTypes[2])){
+            sortedBy = sortTypes[2];
+            Collections.sort(list, new Comparator<Song>() {
+                public int compare(Song s1, Song s2) {
+                    return s1.getTitle().compareTo(s2.getTitle());
+                }
+            });
+        }
+    }
+
+    public void shuffleSongs() {
+        Collections.shuffle(list);
+        shuffle = true;
+    }
+
     public static void setPosition(int position) {
         SongsObject.position = position;
+    }
+
+    public boolean getShuffle(){
+        return shuffle;
     }
 
     public static int getPosition() {
@@ -49,25 +79,7 @@ public class SongsObject {
         return list;
     }
 
-/*    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void sortByArtist() {
-        Collections.sort(list, Comparator.comparing(Song::getArtist));
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void sortByAlbum() {
-        Collections.sort(list, Comparator.comparing(Song::getAlbum));
-    }*/
-
-    private void sortByTitle() {
-        Collections.sort(list, new Comparator<Song>() {
-            public int compare(Song s1, Song s2) {
-                return s1.getTitle().compareTo(s2.getTitle());
-            }
-        });
-    }
-
-    public void shuffleSongs() {
-        Collections.shuffle(list);
+    public String getSortedBy() {
+        return sortedBy;
     }
 }

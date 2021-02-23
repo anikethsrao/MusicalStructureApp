@@ -6,4 +6,11 @@
     <string name="browse">Browse</string>
     <string name="now_playing">Now Playing</string>
     <string name="queue">Queue</string>
+
+    <string-array name="sort_menu">
+        <item>Album</item>
+        <item>Artist</item>
+        <item>Title</item>
+    </string-array>
+
 </resources>

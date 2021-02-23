@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
             android:layout_marginLeft="24dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="24dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/scorpion_drake" />
@@ -112,6 +112,15 @@
             android:layout_toRightOf="@+id/skip_button"
             android:padding="8dp"
             android:src="@drawable/ic_shuffle_24px" />
+
+        <ImageView
+            android:id="@+id/queue_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/play_pause"
+            android:layout_alignLeft="@id/shuffle"
+            android:layout_alignRight="@id/shuffle"
+            android:src="@drawable/queue_music_black_24dp" />
 
     </RelativeLayout>
 

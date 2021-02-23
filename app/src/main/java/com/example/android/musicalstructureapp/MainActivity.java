@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -19,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         SongsObject songs = new SongsObject();
 
-        SongAdapter songsAdapter = new SongAdapter(this, songs.songs);
+        SongAdapter songsAdapter = new SongAdapter(this, songs.list);
 
         GridView browseView = findViewById(R.id.browse_song_grid);
 

@@ -3,6 +3,8 @@ package com.example.android.musicalstructureapp;
 import android.content.res.Resources;
 import android.view.View;
 
+import java.util.ArrayList;
+
 //Song Object to hold important information about songs stored on the app
 public class Song {
     private String title;

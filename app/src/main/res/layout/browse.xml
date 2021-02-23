@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <GridView
-        android:id="@+id/browse_songs"
+        android:id="@+id/browse_song_grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numColumns="2"

@@ -3,9 +3,10 @@ package com.example.android.musicalstructureapp;
 import java.util.ArrayList;
 import java.util.Collections;
 
-final public class SongsObject {
+public class SongsObject {
 
-    final ArrayList<Song> list = new ArrayList<>();
+    static ArrayList<Song> list = new ArrayList<>();
+    static int position;
 
     public SongsObject() {
         list.add(new Song("Senorita (feat. Shawn Mendes)", "Camila Cabello", "Romance", R.drawable.romance_camila_cabello));
@@ -26,6 +27,13 @@ final public class SongsObject {
         list.add(new Song("Baby Sitter (feat. Offset)", "DaBaby", "Baby on Baby", R.drawable.baby_on_baby_da_baby));
     }
 
+    public static void setPosition(int position) {
+        SongsObject.position = position;
+    }
+
+    public static int getPosition() {
+        return position;
+    }
 
     public ArrayList<Song> getList() {
         return list;

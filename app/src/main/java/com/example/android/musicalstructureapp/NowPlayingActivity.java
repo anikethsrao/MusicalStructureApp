@@ -18,18 +18,20 @@ public class NowPlayingActivity extends AppCompatActivity {
         SongsObject songs = new SongsObject();
         ArrayList<Song> list = songs.getList();
 
+        int currentSong = songs.getPosition();
+
         ImageView albumCover = findViewById(R.id.album_cover);
 
-        albumCover.setImageResource(list.get(0).getAlbumCoverResourceID());
+        albumCover.setImageResource(list.get(currentSong).getAlbumCoverResourceID());
 
         TextView songTitle = findViewById(R.id.song_title);
-        songTitle.setText(list.get(0).getTitle());
+        songTitle.setText(list.get(currentSong).getTitle());
 
         TextView artistName = findViewById(R.id.song_artist);
-        artistName.setText(list.get(0).getArtist());
+        artistName.setText(list.get(currentSong).getArtist());
 
         TextView albumName = findViewById(R.id.album_name);
-        albumName.setText(list.get(0).getAlbum());
+        albumName.setText(list.get(currentSong).getAlbum());
 
     }
 }

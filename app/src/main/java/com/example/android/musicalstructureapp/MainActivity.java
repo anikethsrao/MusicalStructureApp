@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                songs.setPosition(position);
                 Intent i = new Intent(MainActivity.this, NowPlayingActivity.class);
                 startActivity(i);
             }

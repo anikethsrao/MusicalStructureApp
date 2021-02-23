@@ -12,15 +12,15 @@ import java.util.Comparator;
 public class SongsObject {
 
     private static boolean notInitialized = true;
-    static ArrayList<Song> list = new ArrayList<>();
-    static int position;
-    static boolean shuffle = false;
+    private static ArrayList<Song> list = new ArrayList<>();
+    private static int position;
+    private static boolean shuffle = false;
 
     //0 -> Album
     //1 -> Artist
     //2 -> Title
     //3 -> Shuffle
-    static int sortedBy = 2;
+    private static int sortedBy = 2;
 
     public SongsObject(){
         if (notInitialized){
@@ -52,9 +52,19 @@ public class SongsObject {
     public void sort(int type) {
         shuffle = false;
         if(type == 0) {
-            //TODO:Sort by Album
+            sortedBy = 0;
+            Collections.sort(list, new Comparator<Song>() {
+                public int compare(Song s1, Song s2) {
+                    return s1.getAlbum().compareTo(s2.getAlbum());
+                }
+            });
         } else if (type == 1){
-            //TODO: Sort by Artist
+            sortedBy = 1;
+            Collections.sort(list, new Comparator<Song>() {
+                public int compare(Song s1, Song s2) {
+                    return s1.getArtist().compareTo(s2.getArtist());
+                }
+            });
         } else if (type == 2){
             sortedBy = 2;
             Collections.sort(list, new Comparator<Song>() {
@@ -63,11 +73,10 @@ public class SongsObject {
                 }
             });
         }else if (type == 3){
-            Log.i("SongsObject", "Shuffled Songs List");
+            sortedBy = 3;
             Collections.shuffle(list);
             shuffle = true;
         }
-
     }
 
     public static void setPosition(int position) {

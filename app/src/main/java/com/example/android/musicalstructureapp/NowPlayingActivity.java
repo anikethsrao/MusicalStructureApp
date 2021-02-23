@@ -40,6 +40,15 @@ public class NowPlayingActivity extends AppCompatActivity {
         TextView albumName = findViewById(R.id.album_name);
         albumName.setText(list.get(currentSong).getAlbum());
 
+        ImageView backArrow = findViewById(R.id.back_arrow);
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NowPlayingActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
         ImageView playImageView = findViewById(R.id.play_pause);
         playImageView.setOnClickListener(new View.OnClickListener() {
             @Override

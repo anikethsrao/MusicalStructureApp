@@ -9,8 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     static SongsObject songs = new SongsObject();
 
     @Override
@@ -24,16 +25,13 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sort_menu, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
         //Check sort type before setting spinner value
         int sortedBy = songs.getSortedBy();
         spinner.setSelection(sortedBy);
-
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-
-        //TODO: fix order of items inflated to alphabetical order by name
-        //TODO: change sort to by album or artist name
 
         refreshList();
 
@@ -49,9 +47,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+        if(position != songs.getSortedBy()) {
+            songs.sort(position);
+            Intent i = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(i);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        //Leaving Empty
+    }
+
     private void refreshList() {
         //populate list with all songs in the queue
-        SongAdapter songsAdapter = new SongAdapter(this, songs.list);
+        SongAdapter songsAdapter = new SongAdapter(this, songs.getList());
         GridView browseView = findViewById(R.id.browse_song_grid);
         browseView.setAdapter(songsAdapter);
     }

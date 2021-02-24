@@ -10,14 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicalStructureApp">
 
-        <activity
-            android:name=".NowPlayingActivity"
-            android:label="Now Playing" />
-
-        <activity
-            android:name=".Queue"
-            android:label="@string/queue" />
-
+        <!-- Parent activity -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +18,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Child activity of MainActivity -->
+        <activity
+            android:name=".NowPlayingActivity"
+            android:label="Now Playing"
+            android:parentActivityName=".MainActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <!-- Child activity of NowPlayingActivity -->
+        <activity
+            android:name=".Queue"
+            android:label="@string/queue"
+            android:parentActivityName=".NowPlayingActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".NowPlayingActivity" />
+        </activity>
+
     </application>
 
 </manifest>
